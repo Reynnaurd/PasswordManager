@@ -1,29 +1,10 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
+import 'information_create_view.dart';
 
 @immutable
 class ExampleExpandableFab extends StatelessWidget {
-  static const _actionTitles = ['Create Post', 'Upload Photo', 'Upload Video'];
-
   const ExampleExpandableFab({super.key});
-
-  void _showAction(BuildContext context, int index) {
-    showDialog<void>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          content: Text(_actionTitles[index]),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('CLOSE'),
-            ),
-          ],
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +12,22 @@ class ExampleExpandableFab extends StatelessWidget {
       distance: 112.0,
       children: [
         ActionButton(
-          onPressed: () => _showAction(context, 0),
+          onPressed: () => {},
           icon: const Icon(Icons.delete),
         ),
         ActionButton(
-          onPressed: () => _showAction(context, 1),
-          icon: const Icon(Icons.edit),
+          onPressed: () => {},
+          icon: const Icon(Icons.contacts),
         ),
         ActionButton(
-          onPressed: () => _showAction(context, 2),
+          onPressed: () => {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CreateInfoPage(),
+              ),
+            )
+          },
           icon: const Icon(Icons.add),
         ),
       ],
